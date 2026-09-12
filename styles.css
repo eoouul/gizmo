@@ -329,6 +329,18 @@ table.spec { width: 100%; min-width: 560px; border-collapse: collapse; font-size
 .club-points h3 { margin: 0 0 10px; font: 400 var(--t-lg)/1.3 var(--display); color: var(--mint); }
 .club-points p { margin: 0; color: var(--muted); }
 .nowrap { white-space: nowrap; }
+
+/* 홈 배경: 밤하늘(별·유성은 backdrop.js) 위로 게임 타이틀의 산 능선을 실루엣으로 깝니다 */
+body.backdrop { background: linear-gradient(180deg, #081640 0%, #0A1B50 55%, #0F2A6E 100%) fixed; }
+.backdrop-stars { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+.backdrop-ridge { position: fixed; left: 0; right: 0; bottom: 0; height: clamp(120px, 24vw, 300px); z-index: -1; pointer-events: none; }
+.backdrop-ridge::before { content: ""; position: absolute; inset: -40% 0 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(22, 71, 187, 0.35), transparent 70%); }
+.backdrop-ridge i { position: absolute; left: 0; right: 0; background-repeat: repeat-x; background-position: bottom center;
+  background-size: auto 100%; image-rendering: pixelated; filter: brightness(0); }
+/* 산 그림은 아래쪽이 비어 있어서, 화면 밑으로 내려 빈 부분이 안 보이게 합니다 */
+.backdrop-ridge .back { top: 8%; bottom: -14%; background-image: url("assets/mountain2.png"); opacity: 0.35; }
+.backdrop-ridge .front { top: 22%; bottom: -22%; background-image: url("assets/mountain.png"); opacity: 0.7; }
 .club .facts { border-top: 1px solid var(--line); padding-top: 20px; }
 @media (min-width: 720px) {
   /* 학교 · 주 엔진 · 프로젝트 · 사이트 를 한 줄로: 항목마다 라벨 위, 값 아래 */
