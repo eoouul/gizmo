@@ -331,7 +331,8 @@ table.spec { width: 100%; min-width: 560px; border-collapse: collapse; font-size
 .nowrap { white-space: nowrap; }
 
 /* 홈 배경: 밤하늘(별·유성은 backdrop.js) 위로 게임 타이틀의 산 능선을 실루엣으로 깝니다 */
-body.backdrop { background: linear-gradient(180deg, #081640 0%, #0A1B50 55%, #0F2A6E 100%) fixed; }
+/* 페이지에 body 태그가 따로 없어서, 산 능선이 있는 페이지의 body 를 고릅니다 */
+body:has(.backdrop-ridge) { background: linear-gradient(180deg, #081640 0%, #0A1B50 55%, #0F2A6E 100%) fixed; }
 .backdrop-stars { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 .backdrop-ridge { position: fixed; left: 0; right: 0; bottom: 0; height: clamp(120px, 24vw, 300px); z-index: -1; pointer-events: none; }
 .backdrop-ridge::before { content: ""; position: absolute; inset: -40% 0 0;

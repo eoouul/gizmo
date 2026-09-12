@@ -1,5 +1,5 @@
 /*
-  ROULETTE WARRIOR 타이틀 화면을 게임과 같은 방식으로 그립니다.
+  룰렛 전사 김전사 타이틀 화면을 게임과 같은 방식으로 그립니다.
 
   값은 전부 KJSS 의 Scene/UI/Main screen UI.tscn 에서 옮겼습니다.
   - CanvasModulate(보라)는 shaded 레이어(구름·산·풀·슬롯머신)에만 곱합니다.

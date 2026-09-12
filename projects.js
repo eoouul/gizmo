@@ -10,7 +10,7 @@
     summary   한두 문장 소개
     tags      짧은 태그 목록
     engine / period / version   있으면 카드에 표시, 없으면 생략
-    cover     "scene"(ROULETTE WARRIOR 타이틀 화면) / 이미지 경로 / 비우면 accent 색 무늬
+    cover     "scene"(룰렛 전사 김전사 타이틀 화면) / 이미지 경로 / 비우면 accent 색 무늬
     accent    cover 를 비웠을 때 쓸 색
     page      자세한 페이지 경로. 없으면 카드 제목에 링크가 안 걸립니다.
     links     [{ label, href }]  itch.io, 영상, 저장소 등 바깥 링크도 됩니다.
@@ -23,7 +23,7 @@
 window.GIZMO_PROJECTS = [
   {
     slug: "roulette-warrior",
-    name: "ROULETTE WARRIOR",
+    name: "룰렛 전사 김전사",
     kind: "게임",
     status: "개발 중",
     featured: true,
