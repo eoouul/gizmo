@@ -14,6 +14,8 @@
     accent    cover 를 비웠을 때 쓸 색
     page      자세한 페이지 경로. 없으면 카드 제목에 링크가 안 걸립니다.
     links     [{ label, href }]  itch.io, 영상, 저장소 등 바깥 링크도 됩니다.
+    placeholder  true 면 "준비 중" 임시 항목으로 점선 카드에 표시됩니다.
+                 실제 내용을 채우면 이 줄을 지우세요.
 
   소식은 GIZMO_NEWS 에 { date, project(slug), title, href } 로 넣습니다.
   날짜 최신순으로 8개까지 홈에 나옵니다.
@@ -37,6 +39,26 @@ window.GIZMO_PROJECTS = [
       { label: "패치 노트", href: "projects/roulette-warrior/#devlog" },
       { label: "스크린샷", href: "projects/roulette-warrior/#shots" }
     ]
+  },
+  {
+    // 임시 항목 — 실제 프로젝트로 바꿀 때 이름·소개를 채우고 placeholder 를 지우세요.
+    slug: "project-02",
+    name: "PROJECT 02",
+    kind: "게임",
+    status: "기획",
+    placeholder: true,
+    summary: "새 프로젝트를 준비하고 있습니다. 이름과 소개는 곧 올릴게요.",
+    accent: "#FCB13B"
+  },
+  {
+    // 임시 항목 — 실제 프로젝트로 바꿀 때 이름·소개를 채우고 placeholder 를 지우세요.
+    slug: "project-03",
+    name: "PROJECT 03",
+    kind: "게임",
+    status: "기획",
+    placeholder: true,
+    summary: "새 프로젝트를 준비하고 있습니다. 이름과 소개는 곧 올릴게요.",
+    accent: "#F07EA0"
   }
 ];
 

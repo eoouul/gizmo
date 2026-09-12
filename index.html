@@ -98,10 +98,10 @@
     const links = (p.links || []).map((l) => `<a href="${esc(l.href)}">${esc(l.label)}</a>`).join("");
     const tags = (p.tags || []).map((t) => `<li>${esc(t)}</li>`).join("");
     return `
-      <article class="card${p.featured ? " featured" : ""}" aria-labelledby="p-${esc(p.slug)}">
+      <article class="card${p.featured ? " featured" : ""}${p.placeholder ? " placeholder" : ""}" aria-labelledby="p-${esc(p.slug)}">
         <div class="cover">${cover(p)}</div>
         <div class="body">
-          <div class="row"><span class="kind">${esc(p.kind)}</span><span class="status ${statusClass(p.status)}">${esc(p.status)}</span></div>
+          <div class="row"><span class="kind">${esc(p.kind)}</span><span class="status ${statusClass(p.status)}">${esc(p.status)}</span>${p.placeholder ? `<span class="kind">준비 중 · 임시</span>` : ""}</div>
           <h3 id="p-${esc(p.slug)}">${title}</h3>
           <p class="summary">${esc(p.summary)}</p>
           ${tags ? `<ul class="tags" aria-label="태그">${tags}</ul>` : ""}
@@ -111,7 +111,12 @@
       </article>`;
   };
 
-  document.getElementById("project-grid").innerHTML = projects.map(card).join("");
+  // 대표 카드는 한 줄을 통째로 쓰고, 나머지는 따로 한 줄에 모아 빈 칸 없이 채웁니다.
+  const featured = projects.filter((p) => p.featured);
+  const others = projects.filter((p) => !p.featured);
+  document.getElementById("project-grid").innerHTML =
+    featured.map(card).join("") +
+    (others.length ? `<div class="project-row">${others.map(card).join("")}</div>` : "");
 
   document.getElementById("news-list").innerHTML = news.slice(0, 8).map((n) => {
     const p = bySlug[n.project];
@@ -120,13 +125,12 @@
     return `<li><time datetime="${esc(n.date)}">${esc(n.date)}</time><span class="proj">${esc(label)}</span><span>${title}</span></li>`;
   }).join("");
 
-  const active = projects.filter((p) => p.status === "개발 중").length;
-  const engines = [...new Set(projects.map((p) => (p.engine || "").split(" ")[0]).filter(Boolean))];
+  // 프로젝트 개수는 싣지 않습니다. 임시 항목은 엔진 목록에서도 뺍니다.
+  const real = projects.filter((p) => !p.placeholder);
+  const engines = [...new Set(real.map((p) => (p.engine || "").split(" ")[0]).filter(Boolean))];
   document.getElementById("home-meta").innerHTML =
-    `<span>프로젝트 <b>${projects.length}</b></span><span>개발 중 <b>${active}</b></span>` +
-    (news[0] ? `<span>최근 소식 <b>${esc(news[0].date)}</b></span>` : "");
+    news[0] ? `<span>최근 소식 <b>${esc(news[0].date)}</b></span>` : "";
   document.getElementById("club-facts").innerHTML =
-    `<dt>프로젝트</dt><dd>${projects.length}개</dd>` +
     (engines.length ? `<dt>엔진</dt><dd>${esc(engines.join(" · "))}</dd>` : "") +
     `<dt>사이트</dt><dd><a href="https://github.com/eoouul/gizmo">github.com/eoouul/gizmo</a></dd>`;
 })();
