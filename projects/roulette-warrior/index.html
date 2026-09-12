@@ -1,0 +1,352 @@
+<!-- ROULETTE WARRIOR 프로젝트 페이지. 공용 스타일과 자산은 사이트 루트에 있습니다. -->
+<meta name="description" content="GIZMO가 만들고 있는 픽셀 액션 로그라이크 ROULETTE WARRIOR의 소개, 스크린샷, 패치 노트.">
+<title>ROULETTE WARRIOR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
+
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="../../" aria-label="GIZMO 홈으로"><span class="pip" aria-hidden="true"></span>GIZMO</a>
+    <nav aria-label="페이지 목차">
+      <a href="#game">게임</a>
+      <a href="#devlog">개발일지</a>
+      <a href="#lore">세계관</a>
+      <a href="#spec">사양</a>
+      <a href="../../#projects">다른 프로젝트</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <p class="eyebrow">GIZMO가 만들고 있는 게임</p>
+
+    <figure class="screen">
+      <div class="scene" id="scene">
+        <div class="layer sky"></div>
+        <canvas class="layer" id="stars" width="640" height="360" aria-hidden="true"></canvas>
+        <div class="layer meteor2" id="meteor2" aria-hidden="true"></div>
+        <div class="layer meteor" id="meteor" aria-hidden="true"></div>
+        <div class="layer cloud2" id="cloud2" aria-hidden="true"></div>
+        <div class="layer cloud" id="cloud" aria-hidden="true"></div>
+        <div class="layer mountain2" aria-hidden="true"></div>
+        <div class="layer mountain" aria-hidden="true"></div>
+        <div class="layer grass3" aria-hidden="true"></div>
+        <div class="layer glow" aria-hidden="true"></div>
+        <div class="layer machine" id="machine" aria-hidden="true"></div>
+        <div class="layer grass" aria-hidden="true"></div>
+        <img class="layer logo" src="../../assets/logo.webp" alt="ROULETTE WARRIOR 로고, 부제 WARRIOR KIM" width="1400" height="700">
+      </div>
+      <figcaption>
+        <span>타이틀 화면 · 게임 속 레이어와 좌표를 그대로 재생</span>
+        <span>640 × 360 · 3배 정수 배율</span>
+      </figcaption>
+    </figure>
+
+    <div class="hero-copy">
+      <h1 id="hero-title">룰렛으로 장비를 뽑고,<br><em>던전에서</em> 살아남으세요.</h1>
+      <div class="hero-side">
+        <span class="chip"><b>v0.1.9-a</b> 알파 · 2026.09.10</span>
+        <p class="quiet">그린우드 마을에 약 스무 번째로 소환된 용사, 김. 마왕성까지 가는 길은 매번 다른 룰렛 결과로 시작됩니다.</p>
+        <div class="actions">
+          <a class="btn primary" href="#devlog">개발일지 보기</a>
+          <a class="btn ghost" href="#game">게임 살펴보기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="game" aria-labelledby="game-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">지금 만드는 게임</p>
+        <h2 id="game-title">ROULETTE WARRIOR</h2>
+        <p class="lede">운이 나빠도 끝이 아닌 픽셀 액션 로그라이크입니다. 무엇을 들고 싸울지는 룰렛이 정하고, 그걸로 어디까지 갈지는 손이 정합니다.</p>
+      </div>
+
+      <div class="game-grid">
+        <ul class="systems">
+          <li>
+            <div>
+              <h3>시작 룰렛</h3>
+              <p>던전에 들어설 때마다 의상·펫·무기를 룰렛으로 뽑고 시작합니다. 같은 무기로 두 번 시작하는 일은 드뭅니다.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>게이지와 배당코인</h3>
+              <p>몬스터를 3마리 처치할 때마다 게이지가 한 칸 오릅니다. 게이지를 모아 던전 룰렛을 돌리면 배당코인을 받고, 코인은 최대 10개까지 쌓입니다.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>자판기 세 대</h3>
+              <p>아이템·액세서리·티켓 자판기가 있고, 값은 배당코인으로 치릅니다. 티켓 자판기는 1% 확률로 골드 티켓을 주고, 골드 티켓은 A등급 아이템이 됩니다.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>액세서리 빌드</h3>
+              <p>[초] 태그와 그 하위 옵션을 합쳐 세 개를 모으면 빌드가 열립니다. A급 액세서리는 같은 이름 태그를 겹쳐 낄 수 없습니다.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>대시 강화</h3>
+              <p>던전에서 모은 돌을 마을의 쟝에게 가져가면 대시가 강해집니다. 보스의 공격은 바닥의 붉은 범위로 먼저 보이니, 강해진 대시로 빠져나오세요.</p>
+            </div>
+          </li>
+        </ul>
+
+        <figure class="feature-shot">
+          <img src="../../assets/shot-roulette.webp" alt="던전 시작 룰렛 화면. 의상, 펫, 무기 세 칸과 빨간 시작 버튼" width="1280" height="720" loading="lazy">
+          <figcaption>던전 시작 룰렛 — 의상 · 펫 · 무기</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="shots" aria-labelledby="shots-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">스크린샷 · v0.1.x 알파</p>
+        <h2 id="shots-title">지금 모습</h2>
+      </div>
+      <div class="shots">
+        <figure>
+          <img src="../../assets/shot-village.webp" alt="그린우드 마을에 서 있는 용사" width="1280" height="720" loading="lazy">
+          <figcaption>그린우드 마을</figcaption>
+        </figure>
+        <figure>
+          <img src="../../assets/shot-dungeon.webp" alt="숲 던전 Brown 스테이지의 방" width="1280" height="720" loading="lazy">
+          <figcaption>숲 던전 · Brown 스테이지</figcaption>
+        </figure>
+        <figure>
+          <img src="../../assets/shot-brown3.webp" alt="숲 던전 3구역. 막대사탕 무기를 든 용사와 펫, 다음 구역으로 가는 문" width="1280" height="720" loading="lazy">
+          <figcaption>숲 던전 3구역 · 다음 구역으로 가는 문</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="devlog" aria-labelledby="devlog-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">개발일지 · 빌드마다 올립니다</p>
+        <h2 id="devlog-title">패치 노트</h2>
+        <p class="lede quiet">알파 빌드는 버전 끝에 <span style="font-family: var(--mono); color: var(--paper);">-a</span>를 붙입니다. 버그를 고치면 끝자리, 기능이 들어가면 가운데 자리가 오릅니다.</p>
+      </div>
+
+      <ol class="log">
+        <li class="next">
+          <div class="ver"><span class="tag">다음 빌드</span><span class="date">개발 중</span></div>
+          <div>
+            <h3>배당코인 도입, 영혼·토큰 화폐 정리 <span class="pill">NEXT</span></h3>
+            <p>던전 룰렛에서 받는 배당코인이 새 화폐가 됩니다. 자판기 세 대가 모두 배당코인으로 결제하고, 예전의 영혼·토큰 화폐는 빠집니다.</p>
+          </div>
+        </li>
+        <li>
+          <div class="ver"><span class="tag">v0.1.9-a</span><span class="date">2026-09-10</span></div>
+          <div>
+            <h3>액세서리 보상 상자 위치 조정</h3>
+            <p>숲 Brown 2구역과 동굴 3-2 방에 보상 상자 자리를 따로 잡았습니다. 전에는 방 가운데 고정 좌표로 떨어져 포탈과 겹치거나 벽에 박혔습니다.</p>
+          </div>
+        </li>
+        <li>
+          <div class="ver"><span class="tag">v0.1.7-a</span><span class="date">2026-09-10</span></div>
+          <div>
+            <h3>Brown 3구역 포탈이 상자를 가리던 문제</h3>
+            <p>다음 구역으로 가는 포탈이 보상 상자와 겹쳐 상자를 열 수 없던 문제를 고쳤습니다.</p>
+          </div>
+        </li>
+        <li>
+          <div class="ver"><span class="tag">v0.1.6-a</span><span class="date">2026-09-10</span></div>
+          <div>
+            <h3>숲 Brown 세로 다리 간격</h3>
+            <p>위아래 방 사이 간격을 24에서 8로 좁혀 세로 다리가 아래 방 바닥까지 제대로 닿게 했습니다.</p>
+          </div>
+        </li>
+        <li>
+          <div class="ver"><span class="tag">v0.1.5-a</span><span class="date">2026-09-10</span></div>
+          <div>
+            <h3>리워드룸 회색 그림자 제거</h3>
+            <p>보이지 않는 충돌 타일이 빛을 가려 벽과 풀 위에 회색 얼룩이 생기던 문제를 고쳤습니다.</p>
+          </div>
+        </li>
+        <li>
+          <div class="ver"><span class="tag">v0.1.4-a</span><span class="date">2026-09-10</span></div>
+          <div>
+            <h3>전투 시작 시점</h3>
+            <p>방에 들어서기도 전에 문간에서 전투가 걸리던 문제와, 납작한 동굴 방에서는 오히려 전투가 안 걸리던 문제를 함께 고쳤습니다. 방 안에 있는데 미니맵이 옆 방을 보여주던 것도 같은 원인이었습니다.</p>
+          </div>
+        </li>
+        <li>
+          <div class="ver"><span class="tag">v0.1.3-a</span><span class="date">2026-09-10</span></div>
+          <div>
+            <h3>튜토리얼 보상 상자</h3>
+            <p>벽을 등지고 서 있으면 상자가 벽 너머에 떨어져 열 수 없던 문제를 고쳤습니다.</p>
+          </div>
+        </li>
+        <li>
+          <div class="ver"><span class="tag">v0.1.2-a</span><span class="date">2026-09-10</span></div>
+          <div>
+            <h3>테스트 도구 보강</h3>
+            <p>치트 패널에서 몬스터를 바로 소환할 수 있게 됐고, 액세서리 테스트룸 패널을 켜고 끌 수 있습니다.</p>
+          </div>
+        </li>
+        <li>
+          <div class="ver"><span class="tag">v0.1.1-a</span><span class="date">2026-09-09</span></div>
+          <div>
+            <h3>숲 던전 몬스터 스폰 위치</h3>
+            <p>Light 1·2·3 방의 몬스터 소환 자리를 다시 잡았습니다.</p>
+          </div>
+        </li>
+        <li>
+          <div class="ver"><span class="tag">v0.1.0-a</span><span class="date">2026-09-09</span></div>
+          <div>
+            <h3>첫 알파 빌드</h3>
+            <p>처음으로 윈도우 실행 파일을 뽑았습니다. 빌드판에서만 아이템이 하나도 안 읽혀 상자와 룰렛이 멈추던 문제, 미니맵이 어긋나던 문제를 고치고 버전 표기를 시작했습니다.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="lore" aria-labelledby="lore-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">세계관 · 로딩 화면에 한 줄씩 나오는 이야기</p>
+        <h2 id="lore-title">그린우드 마을</h2>
+      </div>
+
+      <div class="loading" aria-label="로딩 화면 예시">
+        <p class="eyebrow">NOW LOADING</p>
+        <p class="ko">당신은 약 20번째로 소환된 용사라고 합니다.</p>
+        <p class="en">You are said to be approximately the twentieth summoned hero.</p>
+        <div class="bar-track" aria-hidden="true"><div class="bar-fill"></div></div>
+      </div>
+
+      <ul class="lore">
+        <li><p>그린우드 마을은 80년 전 왕국이 멸망했을 때 피난민들이 세운 마을입니다.</p><p class="en">Greenwood Village was founded by refugees when the kingdom fell 80 years ago.</p></li>
+        <li><p>그린우드 마을은 게이블 대륙 북부의 어느 숲속에 자리 잡고 있습니다.</p><p class="en">Greenwood Village lies deep within a forest in the northern reaches of the Gable Continent.</p></li>
+        <li><p>마왕성이 나타난 이래 그곳에 가장 가까이 다가간 사람은 단 4명뿐이라고 합니다.</p><p class="en">Only four people are said to have come close to the Demon Castle since it first appeared.</p></li>
+        <li><p>마왕성의 군단장으로 임명된 자는 모두 6명입니다.</p><p class="en">Six commanders serve the armies of the Demon Castle.</p></li>
+        <li><p>마왕성의 어느 군단장이 슬라임을 끊임없이 대량 생산해 마을 근처로 보내고 있다고 합니다.</p><p class="en">One of the Demon Castle's commanders is said to be mass-producing slimes and sending them toward nearby villages.</p></li>
+        <li><p>신화에 따르면 전대 용사 타이칸은 역대 가장 강한 용사였다고 합니다.</p><p class="en">According to legend, Taikan was the mightiest hero of all time.</p></li>
+        <li><p>전대 용사 타이칸은 마왕성 최상층에서 마지막으로 목격된 뒤 실종되었습니다.</p><p class="en">Taikan vanished after he was last seen on the highest floor of the Demon Castle.</p></li>
+        <li><p>헤르메스의 말에 따르면 용사 소환은 300년에 한 번 이루어지며, 사람들은 그날을 축제로 기념한다고 합니다.</p><p class="en">According to Hermes, a hero is summoned once every 300 years, and the people celebrate it as a festival.</p></li>
+        <li><p>그린우드 외에도 네 곳의 마을이 존재한다고 알려져 있습니다. 어쩌면 더 있을지도 모릅니다.</p><p class="en">There are said to be four other villages beyond Greenwood. There may be more yet undiscovered.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="spec" aria-labelledby="spec-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">시스템 요구 사항 · 윈도우</p>
+        <h2 id="spec-title">사양</h2>
+      </div>
+      <div class="spec-wrap">
+        <table class="spec">
+          <thead>
+            <tr><th scope="col"><span class="visually-hidden">항목</span></th><th scope="col">최소</th><th scope="col">권장</th></tr>
+          </thead>
+          <tbody>
+            <tr class="target"><th scope="row">기준</th><td>1280 × 720 · 60fps</td><td>1920 × 1080 · 60fps</td></tr>
+            <tr><th scope="row">운영체제</th><td>Windows 10 64-bit</td><td>Windows 10 / 11 64-bit</td></tr>
+            <tr><th scope="row">프로세서</th><td>Intel Core i3-6100 / AMD FX-6300</td><td>Intel Core i5-8400 / AMD Ryzen 3 3100</td></tr>
+            <tr><th scope="row">메모리</th><td>4 GB RAM</td><td>8 GB RAM</td></tr>
+            <tr><th scope="row">그래픽</th><td>GeForce GTX 750 Ti / Radeon R7 260 / Intel HD 520</td><td>GeForce GTX 1050 / Radeon RX 560 / Intel Iris Xe</td></tr>
+            <tr><th scope="row">DirectX</th><td>12 (Feature Level 12_0)</td><td>12</td></tr>
+            <tr><th scope="row">저장 공간</th><td>1 GB</td><td>1 GB · SSD</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">알파 기준 추정치입니다. 실제 기기에서 재 보고 바뀔 수 있습니다. DirectX 12를 지원하지 않는 그래픽카드에서는 성능과 상관없이 실행되지 않습니다.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 <a href="../../">GIZMO</a> · ROULETTE WARRIOR는 GIZMO가 개발 중인 게임입니다.</span>
+    <span>제목 글꼴 물마루(Mulmaru) · SIL Open Font License 1.1</span>
+  </div>
+</footer>
+
+
+
+<script>
+(() => {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // 게임의 Star 파티클(100개, 수명 3초)을 캔버스로 옮깁니다.
+  const canvas = document.getElementById("stars");
+  const ctx = canvas.getContext("2d");
+  const stars = Array.from({ length: 100 }, () => ({
+    x: Math.floor(Math.random() * 640),
+    y: Math.floor(Math.random() * 230),
+    phase: Math.random() * Math.PI * 2,
+    period: 1500 + Math.random() * 3000,
+    size: Math.random() < 0.18 ? 2 : 1
+  }));
+  const drawStars = (t) => {
+    ctx.clearRect(0, 0, 640, 360);
+    for (const s of stars) {
+      const a = reduce ? 0.7 : 0.35 + 0.65 * Math.abs(Math.sin(s.phase + t / s.period));
+      ctx.fillStyle = `rgba(255, 255, 255, ${a.toFixed(3)})`;
+      ctx.fillRect(s.x, s.y, s.size, s.size);
+    }
+  };
+
+  const machine = document.getElementById("machine");
+  const meteors = [
+    { el: document.getElementById("meteor"), frames: 24, fps: 12.5, at: 1200, gap: [5000, 9000] },
+    { el: document.getElementById("meteor2"), frames: 14, fps: 10, at: 4800, gap: [7000, 12000] }
+  ];
+  const clouds = [
+    { el: document.getElementById("cloud"), perSec: 0.03 },
+    { el: document.getElementById("cloud2"), perSec: 0.02 }
+  ];
+  const frameAt = (el, frames, i) => {
+    el.style.backgroundPositionX = `${(i / (frames - 1)) * 100}%`;
+  };
+
+  if (reduce) {
+    drawStars(0);
+    frameAt(machine, 17, 0);
+    meteors.forEach((m) => { m.el.style.display = "none"; });
+    return;
+  }
+
+  const start = performance.now();
+  const tick = (now) => {
+    const t = now - start;
+    drawStars(t);
+    frameAt(machine, 17, Math.floor(t / 100) % 17);   // 초당 10프레임 (speed 5 × 2)
+
+    for (const m of meteors) {
+      const playMs = (m.frames / m.fps) * 1000;
+      if (t < m.at) { m.el.style.opacity = "0"; continue; }
+      const local = t - m.at;
+      if (local < playMs) {
+        m.el.style.opacity = "1";
+        frameAt(m.el, m.frames, Math.min(m.frames - 1, Math.floor(local / 1000 * m.fps)));
+      } else {
+        m.el.style.opacity = "0";
+        m.at = t + m.gap[0] + Math.random() * (m.gap[1] - m.gap[0]);
+      }
+    }
+
+    for (const c of clouds) {
+      const shift = ((t / 1000) * c.perSec * 103.125) % 103.125;
+      c.el.style.backgroundPositionX = `${-shift}%`;
+    }
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+})();
+</script>
