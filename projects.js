@@ -63,9 +63,9 @@ window.GIZMO_PROJECTS = [
 ];
 
 window.GIZMO_NEWS = [
-  { date: "2026-09-12", project: "roulette-warrior", title: "다음 빌드: 배당코인 도입, 자판기 결제를 배당코인으로", href: "projects/roulette-warrior/#devlog" },
+  { date: "2026-09-12", project: "roulette-warrior", title: "다음 업데이트: 배당코인 도입, 자판기 결제를 배당코인으로", href: "projects/roulette-warrior/#devlog" },
   { date: "2026-09-10", project: "roulette-warrior", title: "v0.1.9-a 액세서리 보상 상자 위치 조정", href: "projects/roulette-warrior/#devlog" },
   { date: "2026-09-10", project: "roulette-warrior", title: "v0.1.7-a Brown 3구역 포탈이 상자를 가리던 문제 수정", href: "projects/roulette-warrior/#devlog" },
   { date: "2026-09-10", project: "roulette-warrior", title: "v0.1.4-a 전투 시작 시점 수정", href: "projects/roulette-warrior/#devlog" },
-  { date: "2026-09-09", project: "roulette-warrior", title: "v0.1.0-a 첫 알파 빌드", href: "projects/roulette-warrior/#devlog" }
+  { date: "2026-09-09", project: "roulette-warrior", title: "v0.1.0-a 첫 알파 버전", href: "projects/roulette-warrior/#devlog" }
 ];
