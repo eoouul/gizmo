@@ -3,7 +3,7 @@
 <title>GIZMO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="styles.css?v=20260913">
+<link rel="stylesheet" href="styles.css?v=20260913b">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
 
 <header class="bar">
@@ -50,8 +50,23 @@
     <div class="wrap club">
       <div class="head" style="margin-bottom: 0;">
         <p class="eyebrow">만드는 사람들</p>
-        <h2 id="club-title">GIZMO</h2>
-        <p class="lede">GIZMO는 동명대학교의 게임 개발 동아리입니다. 주로 언리얼 엔진과 Godot으로 게임을 만들고, 여러 프로젝트를 함께 진행합니다. 프로젝트마다 빌드가 나오면 이 사이트의 소식과 각 프로젝트 페이지에 올립니다.</p>
+        <h2 id="club-title">아이디어에서 멈추지 않고, 플레이할 수 있는 게임까지</h2>
+        <p class="lede">GIZMO는 동명대학교 게임 개발 동아리입니다. 주로 언리얼 엔진과 Godot을 쓰고, 여러 게임을 함께 만들고 있습니다.</p>
+      </div>
+      <p class="club-now" id="club-now"></p>
+      <div class="club-points">
+        <section>
+          <h3>엔진은 언리얼과 Godot</h3>
+          <p>두 엔진을 주로 씁니다. 지금 개발 중인 ROULETTE WARRIOR는 Godot 4.6과 C#으로 만들고 있습니다.</p>
+        </section>
+        <section>
+          <h3>직접 해 보는 빌드</h3>
+          <p>개발 중인 게임도 Windows 빌드로 뽑아 직접 플레이하며 고칩니다. 빌드마다 버전 번호를 붙여 무엇이 바뀌었는지 추적합니다.</p>
+        </section>
+        <section>
+          <h3>만든 과정을 남깁니다</h3>
+          <p>새 빌드가 나오면 패치 노트와 이 사이트의 소식에 올립니다. 게임이 어떻게 자라는지 누구나 볼 수 있습니다.</p>
+        </section>
       </div>
       <dl class="facts" id="club-facts"></dl>
     </div>
@@ -65,8 +80,8 @@
   </div>
 </footer>
 
-<script src="projects.js?v=20260913"></script>
-<script src="title-scene.js?v=20260913"></script>
+<script src="projects.js?v=20260913b"></script>
+<script src="title-scene.js?v=20260913b"></script>
 <script>
 (() => {
   const projects = window.GIZMO_PROJECTS || [];
@@ -148,6 +163,12 @@
   document.getElementById("home-meta").innerHTML =
     `<span>프로젝트 <b>${real.length}</b></span><span>개발 중 <b>${active}</b></span>` +
     (news[0] ? `<span>최근 소식 <b>${esc(news[0].date)}</b></span>` : "");
+  const building = real.filter((p) => p.status === "개발 중");
+  document.getElementById("club-now").innerHTML = building.length
+    ? `<span class="chip">지금 개발 중</span> ` + building.map((p) =>
+        `<a href="${esc(p.page || "#projects")}">${esc(p.name)}</a>` +
+        (p.version ? ` <span class="quiet">${esc(p.version)}</span>` : "")).join(" · ")
+    : "";
   document.getElementById("club-facts").innerHTML =
     `<dt>학교</dt><dd>동명대학교</dd>` +
     `<dt>주 엔진</dt><dd>언리얼 엔진 · Godot</dd>` +
