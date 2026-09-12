@@ -39,10 +39,11 @@
         <div class="layer machine" id="machine" aria-hidden="true"></div>
         <div class="layer grass" aria-hidden="true"></div>
         <img class="layer logo" src="../../assets/logo.webp" alt="ROULETTE WARRIOR 로고, 부제 WARRIOR KIM" width="1400" height="700">
+        <canvas class="title-canvas" id="title-canvas" role="img" aria-label="ROULETTE WARRIOR 타이틀 화면"></canvas>
       </div>
       <figcaption>
-        <span>타이틀 화면 · 게임 속 레이어와 좌표를 그대로 재생</span>
-        <span>640 × 360 · 3배 정수 배율</span>
+        <span>타이틀 화면 · 게임의 레이어·셰이더·조명·글로우를 그대로 재생</span>
+        <span>기준 해상도 640 × 360</span>
       </figcaption>
     </figure>
 
@@ -279,9 +280,25 @@
 
 
 
+<script src="../../title-scene.js"></script>
 <script>
 (() => {
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // 게임과 같은 방식(WebGL)으로 그릴 수 있으면 그걸 쓰고, 안 되면 아래 CSS 레이어로 그립니다.
+  const sceneEl = document.getElementById("scene");
+  const titleCanvas = document.getElementById("title-canvas");
+  if (window.GizmoTitleScene && window.GizmoTitleScene.mount(titleCanvas, { images: {
+      sky: "../../assets/sky.png", cloud: "../../assets/cloud.png", cloud2: "../../assets/cloud2.png",
+      mountain: "../../assets/mountain.png", mountain2: "../../assets/mountain2.png",
+      grass: "../../assets/grass.png", grass3: "../../assets/grass3.png",
+      machine: "../../assets/machine.png", meteor: "../../assets/meteor.png", meteor2: "../../assets/meteor2.png",
+      logo: "../../assets/logo.webp", light: "../../assets/light.png"
+    } })) {
+    sceneEl.classList.add("webgl");
+    titleCanvas.addEventListener("titlescene:failed", () => sceneEl.classList.remove("webgl"));
+    return;
+  }
 
   // 게임의 Star 파티클(100개, 수명 3초)을 캔버스로 옮깁니다.
   const canvas = document.getElementById("stars");

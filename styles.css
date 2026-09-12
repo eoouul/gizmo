@@ -420,3 +420,23 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 .card.placeholder { background: transparent; border: 1px dashed var(--panel-line); }
 .card.placeholder .cover-pattern { opacity: 0.7; }
 .card.placeholder h3 { color: var(--muted); }
+
+/* 게임과 같은 방식(WebGL)으로 그리는 타이틀 화면. 켜지면 CSS 레이어는 숨깁니다. */
+.scene .title-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; image-rendering: auto; }
+.scene.webgl .title-canvas { display: block; }
+.scene.webgl > :not(.title-canvas) { display: none; }
+
+/* 대표 카드: 사진 칸이 오른쪽 정보 칸 높이만큼 늘어나고, 그 안에서 16:9 장면을
+   가운데 맞춰 잘라 채웁니다(object-fit: cover 와 같은 방식). 장면 비율은 그대로라
+   레이어가 찌그러지지 않습니다. */
+@media (min-width: 900px) {
+  .card.featured .cover { aspect-ratio: auto; container-type: size; }
+  .card.featured .cover .scene {
+    inset: auto;
+    left: 50%;
+    top: 50%;
+    width: max(100cqw, 100cqh * 16 / 9);
+    height: max(100cqh, 100cqw * 9 / 16);
+    transform: translate(-50%, -50%);
+  }
+}

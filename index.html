@@ -66,6 +66,7 @@
 </footer>
 
 <script src="projects.js"></script>
+<script src="title-scene.js"></script>
 <script>
 (() => {
   const projects = window.GIZMO_PROJECTS || [];
@@ -82,6 +83,7 @@
       <div class="layer grass3"></div><div class="layer glow"></div>
       <div class="layer machine"></div><div class="layer grass"></div>
       <img class="layer logo" src="assets/logo.webp" alt="" width="1400" height="700">
+      <canvas class="title-canvas" role="img" aria-label="ROULETTE WARRIOR 타이틀 화면"></canvas>
     </div>`;
   const cover = (p) => {
     if (p.cover === "scene") return sceneCover();
@@ -117,6 +119,21 @@
   document.getElementById("project-grid").innerHTML =
     featured.map(card).join("") +
     (others.length ? `<div class="project-row">${others.map(card).join("")}</div>` : "");
+
+  // 대표 카드의 타이틀 화면도 게임과 같은 방식(WebGL)으로 그립니다. 안 되면 CSS 레이어 그대로.
+  document.querySelectorAll("#project-grid .scene").forEach((scene) => {
+    const c = scene.querySelector(".title-canvas");
+    if (window.GizmoTitleScene && window.GizmoTitleScene.mount(c, { images: {
+      sky: "assets/sky.png", cloud: "assets/cloud.png", cloud2: "assets/cloud2.png",
+      mountain: "assets/mountain.png", mountain2: "assets/mountain2.png",
+      grass: "assets/grass.png", grass3: "assets/grass3.png",
+      machine: "assets/machine.png", meteor: "assets/meteor.png", meteor2: "assets/meteor2.png",
+      logo: "assets/logo.webp", light: "assets/light.png"
+    } })) {
+      scene.classList.add("webgl");
+      c.addEventListener("titlescene:failed", () => scene.classList.remove("webgl"));
+    }
+  });
 
   document.getElementById("news-list").innerHTML = news.slice(0, 8).map((n) => {
     const p = bySlug[n.project];
