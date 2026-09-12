@@ -125,12 +125,15 @@
     return `<li><time datetime="${esc(n.date)}">${esc(n.date)}</time><span class="proj">${esc(label)}</span><span>${title}</span></li>`;
   }).join("");
 
-  // 프로젝트 개수는 싣지 않습니다. 임시 항목은 엔진 목록에서도 뺍니다.
+  // 개수는 실제 프로젝트만 셉니다. placeholder(임시) 항목은 카드로만 보이고 숫자에는 안 들어갑니다.
   const real = projects.filter((p) => !p.placeholder);
+  const active = real.filter((p) => p.status === "개발 중").length;
   const engines = [...new Set(real.map((p) => (p.engine || "").split(" ")[0]).filter(Boolean))];
   document.getElementById("home-meta").innerHTML =
-    news[0] ? `<span>최근 소식 <b>${esc(news[0].date)}</b></span>` : "";
+    `<span>프로젝트 <b>${real.length}</b></span><span>개발 중 <b>${active}</b></span>` +
+    (news[0] ? `<span>최근 소식 <b>${esc(news[0].date)}</b></span>` : "");
   document.getElementById("club-facts").innerHTML =
+    `<dt>프로젝트</dt><dd>${real.length}개</dd>` +
     (engines.length ? `<dt>엔진</dt><dd>${esc(engines.join(" · "))}</dd>` : "") +
     `<dt>사이트</dt><dd><a href="https://github.com/eoouul/gizmo">github.com/eoouul/gizmo</a></dd>`;
 })();

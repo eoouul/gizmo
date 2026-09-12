@@ -14,8 +14,8 @@
     accent    cover 를 비웠을 때 쓸 색
     page      자세한 페이지 경로. 없으면 카드 제목에 링크가 안 걸립니다.
     links     [{ label, href }]  itch.io, 영상, 저장소 등 바깥 링크도 됩니다.
-    placeholder  true 면 "준비 중" 임시 항목으로 점선 카드에 표시됩니다.
-                 실제 내용을 채우면 이 줄을 지우세요.
+    placeholder  true 면 "준비 중" 임시 항목으로 점선 카드에 표시되고, 홈의 프로젝트
+                 개수에는 들어가지 않습니다. 실제 내용을 채우면 이 줄을 지우세요.
 
   소식은 GIZMO_NEWS 에 { date, project(slug), title, href } 로 넣습니다.
   날짜 최신순으로 8개까지 홈에 나옵니다.
