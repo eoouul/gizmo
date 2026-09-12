@@ -19,9 +19,9 @@ def build(page_rel, out_rel):
     base = os.path.dirname(page)
     html = open(page, encoding="utf-8").read()
     read = lambda rel: open(os.path.normpath(os.path.join(base, rel)), encoding="utf-8").read()
-    html = re.sub(r'<link rel="stylesheet" href="((?:\.\./)*styles\.css)">',
+    html = re.sub(r'<link rel="stylesheet" href="((?:\.\./)*styles\.css)(?:\?v=[^"]*)?">',
                   lambda m: "<style>" + read(m.group(1)) + "</style>", html)
-    html = re.sub(r'<script src="((?:\.\./)*[A-Za-z0-9_\-]+\.js)"></script>',
+    html = re.sub(r'<script src="((?:\.\./)*[A-Za-z0-9_\-]+\.js)(?:\?v=[^"]*)?"></script>',
                   lambda m: "<script>" + read(m.group(1)) + "</script>", html)
     html = re.sub(r'(?:\.\./)*assets/([A-Za-z0-9_.\-]+)', data_uri, html)
     out = os.path.join(root, out_rel)

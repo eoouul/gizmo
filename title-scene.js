@@ -9,6 +9,7 @@
     유성은 페이드가 끝나고 각자 StartDelay 뒤에 시작합니다.
   - 구름은 SKY.gdshader, 풀은 wind_sway.gdshader 를 GLSL 로 옮겼습니다.
   - WorldEnvironment 글로우는 임계값·bloom·6단계 가중치를 그대로 쓰는 블룸 패스입니다.
+    사이트에서는 번짐이 없는 쪽이 낫다고 해서 꺼 두었습니다(CFG.glow.enabled).
   - 게임은 hdr_2d 라 선형 색공간 HDR 로 계산하므로 여기서도 그렇게 합니다.
 
   사용:  GizmoTitleScene.mount(canvas, { images: {...}, glowGain })  → 성공하면 true
@@ -23,7 +24,7 @@ window.GizmoTitleScene = (() => {
   const CFG = {
     canvasModulate: linear(0.22925657, 0.14050582, 0.4799664),
     light: { x: 321 - 51.2, y: 240 - 51.2, size: 102.4 },
-    glow: { threshold: 1.16, hdrScale: 3.16, bloom: 0.55, intensity: 0.23, strength: 0.4, cap: 168.33,
+    glow: { enabled: false, threshold: 1.16, hdrScale: 3.16, bloom: 0.55, intensity: 0.23, strength: 0.4, cap: 168.33,
             levels: [3.87, 2.59, 2.4, 0.85, 1.92, 0.91] },
     stars: { count: 100, life: 3.0, lifeRand: 0.5, cx: 325, cy: 175, ex: 360 * 0.92, ey: 180, hdr: 18.178162, scaleMin: 0.3 },
     windSpeed: 3.0,
@@ -217,7 +218,7 @@ window.GizmoTitleScene = (() => {
     if (!gl) return false;
     const floatOk = !!gl.getExtension("EXT_color_buffer_float");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const gain = CFG.glow.intensity * (options.glowGain ?? 1);
+    const gain = CFG.glow.enabled ? CFG.glow.intensity * (options.glowGain ?? 1) : 0;
 
     let progLayer, progStar, progPre, progBlur, progComp;
     try {
@@ -430,7 +431,7 @@ window.GizmoTitleScene = (() => {
 
       // 2) 글로우: 입력 추출 → 6단계 축소·흐림
       let src = scene;
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; gain > 0 && i < 6; i++) {
         const [a, b] = levels[i];
         gl.bindFramebuffer(gl.FRAMEBUFFER, a.fb);
         gl.viewport(0, 0, a.w, a.h);
