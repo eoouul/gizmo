@@ -1,5 +1,5 @@
 <!-- GIZMO 홈. 프로젝트 카드와 소식은 projects.js 의 목록으로 그립니다. -->
-<meta name="description" content="게임 동아리 GIZMO의 프로젝트와 개발 소식.">
+<meta name="description" content="동명대학교 게임 개발 동아리 GIZMO의 프로젝트와 개발 소식.">
 <title>GIZMO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
 
 <main id="top">
   <section class="home-hero wrap" aria-labelledby="home-title">
-    <p class="eyebrow">게임 만드는 동아리</p>
+    <p class="eyebrow">동명대학교 게임 개발 동아리</p>
     <h1 class="wordmark" id="home-title"><span class="pip" aria-hidden="true"></span>GIZMO</h1>
     <p class="lede">여러 게임을 동시에 만들고 있습니다. 진행 중인 프로젝트와 빌드 소식을 여기에 모읍니다.</p>
     <p class="home-meta" id="home-meta"></p>
@@ -51,7 +51,7 @@
       <div class="head" style="margin-bottom: 0;">
         <p class="eyebrow">만드는 사람들</p>
         <h2 id="club-title">GIZMO</h2>
-        <p class="lede">GIZMO는 게임을 만드는 동아리입니다. 프로젝트마다 빌드가 나오면 이 사이트의 소식과 각 프로젝트 페이지를 고칩니다.</p>
+        <p class="lede">GIZMO는 동명대학교의 게임 개발 동아리입니다. 주로 언리얼 엔진과 Godot으로 게임을 만들고, 여러 프로젝트를 함께 진행합니다. 프로젝트마다 빌드가 나오면 이 사이트의 소식과 각 프로젝트 페이지에 올립니다.</p>
       </div>
       <dl class="facts" id="club-facts"></dl>
     </div>
@@ -145,13 +145,13 @@
   // 개수는 실제 프로젝트만 셉니다. placeholder(임시) 항목은 카드로만 보이고 숫자에는 안 들어갑니다.
   const real = projects.filter((p) => !p.placeholder);
   const active = real.filter((p) => p.status === "개발 중").length;
-  const engines = [...new Set(real.map((p) => (p.engine || "").split(" ")[0]).filter(Boolean))];
   document.getElementById("home-meta").innerHTML =
     `<span>프로젝트 <b>${real.length}</b></span><span>개발 중 <b>${active}</b></span>` +
     (news[0] ? `<span>최근 소식 <b>${esc(news[0].date)}</b></span>` : "");
   document.getElementById("club-facts").innerHTML =
+    `<dt>학교</dt><dd>동명대학교</dd>` +
+    `<dt>주 엔진</dt><dd>언리얼 엔진 · Godot</dd>` +
     `<dt>프로젝트</dt><dd>${real.length}개</dd>` +
-    (engines.length ? `<dt>엔진</dt><dd>${esc(engines.join(" · "))}</dd>` : "") +
     `<dt>사이트</dt><dd><a href="https://github.com/eoouul/gizmo">github.com/eoouul/gizmo</a></dd>`;
 })();
 </script>
